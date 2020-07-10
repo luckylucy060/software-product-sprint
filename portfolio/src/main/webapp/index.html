@@ -9,14 +9,38 @@
         	* {
                     box-sizing: border-box;
             }
+            .column {
+                float:left;
+            }
+            .column.left {
+                width: 27%;
+                height:100%;
+                background-color:DarkSlateGray;
+            }
+            .column.middle {
+                width: 25%;
+                height:100%;
+                background-color:white;
+            }
+            .column.right{
+                width:45%;
+                height:100%;
+                background-color:white;
+                font-size=100%;
+            }
+            .columns:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
     </style>
   </head>
-  <body>
+  <body style="overflow-y:hidden;margin:0;padding:0">
  
-    
- 
-    <div id="leftlist" style="background-color:DarkGreen;height:580px;width:27%;padding-top=0px;float:left;">
-        <div id="contact" style="color:white;float:bottom;padding-top:400px;padding-left:10%">
+    <div class="columns">
+    <div class="column left">
+    <!--<div class="column left" style="position:absolute;background-color:DarkSlateGray;height:100%;width:27%;padding-top=0px;"> -->
+        <div id="contact" style="position:relative;color:white;padding-top:120%;padding-left:10%">
             <b>CONTACTS</b><br>
             <br>
             TEL:<br>
@@ -26,21 +50,32 @@
             xmt0827@163.com<br>
         </div>
     </div>
- 
-    <div id="photo" style="position:absolute;padding-top:50px;padding-left:220px;z-index=2">
+
+    <div id="photo" style="position:absolute;padding-top:50px;padding-left:220px;z-index:2">
         <img src="http://static.runoob.com/images/demo/demo2.jpg"  width="400" height="480">
     </div>
 
-    <div id="rightlist" style="background-color:white;height:580px;width:45%;padding-top:120px;float:right;">
-        <div id="name">
-            <b>Jiayu Lu</b><br>
+    <div class="column middle">
+        <p style="color:white">placeholder</p>
+    </div>
+
+    <div class="column right">
+        <div id="name" style="padding-top:120px;line-height:30%">
+            <h1 style="font-size:4.0em">JIAYU LU</h1>
+            <p style="font-size:2.0em;color:DarkSlateGray">CS@Nanjing University</p>
             <br>
-            CS@NJU<br>
+        </div>
+        <div id="content" style="padding-right:20px;padding-left:0px;font-size:1.0em;color:#909090;width:90%;float:left">
+            <p >Nice to meet you!</p>
+            <p >Welcome to my portfolio. To learn more about me in gerneral, please click on "Resume". To have a look at my previous projects, please click on "Github". </p>
+            <p >If you have any questions, feel free to contact with me by TEL or EMAIL listed in the left. </p>
         </div>
     </div>
- 
-    
- 
+
+    </div>
+
+
+
   </body>
 </html>
   <!---
