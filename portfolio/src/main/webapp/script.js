@@ -26,3 +26,13 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function jump_to_github(){
+    //window.location.href='https://github.com/luckylucy060';
+    window.open('https://github.com/luckylucy060');
+    window.history.back(-1);
+}
+function jump_to_resume(){
+    window.open('JiayuLu.pdf');
+    window.history.back(-1);
+}
