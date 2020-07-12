@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments of Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+  </head>
+  <body onload="loadAllComments()">
+        <div id="comment-container"></div>
+
+        <form action="/data" method="POST">
+            <p>Enter your comment here:</p>
+                <textarea name="text-input"></textarea>
+            <br/><br/>
+            <input type="submit"/>
+        </form>
+
+  </body>
+</html>

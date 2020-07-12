@@ -64,10 +64,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
     comments = new ArrayList<>();
-    comments.add(
-        "A ship in port is safe");
-    comments.add("They told me computers could");
-    comments.add("A ship in port is safe, but that's");
+    //comments.add("They told me computers could");
   }
     
   @Override
@@ -83,6 +80,42 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(s);
     return json;
+  }
+
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+    comments.add(text);
+    response.sendRedirect("/comment.html");
+
+    /*
+    boolean upperCase = Boolean.parseBoolean(getParameter(request, "upper-case", "false"));
+    boolean sort = Boolean.parseBoolean(getParameter(request, "sort", "false"));
+
+    // Convert the text to upper case.
+    if (upperCase) {
+      text = text.toUpperCase();
+    }
+
+    // Break the text into individual words.
+    String[] words = text.split("\\s*,\\s*");
+
+    // Sort the words.
+    if (sort) {
+      Arrays.sort(words);
+    }
+
+    // Respond with the result.
+    response.setContentType("text/html;");
+    response.getWriter().println(Arrays.toString(words));
+    */
+  }
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }
 

@@ -37,15 +37,19 @@ function jump_to_resume(){
     window.history.back(-1);
 }
 
-async function getRandomQuoteUsingAsyncAwait() {
+function jump_to_comment(){
+    window.open("/comment.html");
+    window.history.back(-1);
+}
+function loadAllComments() {
   fetch('/data').then(response => response.json()).then((comments) => {
 
     const ListElement = document.getElementById('comment-container');
     ListElement.innerHTML = '';
-    ListElement.appendChild(
-        createListElement(comments[0]));
-    ListElement.appendChild(
-        createListElement(comments[1]));
+    for (i=0; i<comments.length; i++) {       
+        ListElement.appendChild(
+        createListElement(comments[i]));
+    }
   });
     
 }
