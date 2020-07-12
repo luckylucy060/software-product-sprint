@@ -36,3 +36,22 @@ function jump_to_resume(){
     window.open('JiayuLu.pdf');
     window.history.back(-1);
 }
+
+async function getRandomQuoteUsingAsyncAwait() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+
+    const ListElement = document.getElementById('comment-container');
+    ListElement.innerHTML = '';
+    ListElement.appendChild(
+        createListElement(comments[0]));
+    ListElement.appendChild(
+        createListElement(comments[1]));
+  });
+    
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
