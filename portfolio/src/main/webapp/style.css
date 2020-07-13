@@ -3,6 +3,7 @@ body {
     margin:0;
     padding:0;
 }
+
 .column {
     float:left;
 }
@@ -22,27 +23,34 @@ body {
     height:100%;
     background-color:white;
     font-size:100%;
+    padding-right:20px;
 }
 .columns:after {
     content: "";
     display: table;
     clear: both;
 }
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .button {
-    background-color: #66CC99; 
-    border: 1px solid green;
+    flex: 1 25%;
+    background-color: #669999; 
+    border: 1px solid white;
     color: white;
     padding: 10px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
+    /*display: inline-block;*/
+    font-size: 1.2rem;
     cursor: pointer;
-    width:28%;
+    /*width:28%;*/
 }
 
 .button:hover {
-    background-color: #669999;
+    background-color: #476868;
 }
 .contact{
     position:relative;
@@ -57,11 +65,14 @@ body {
     z-index:2;
 }
 .name{
-    padding-top:120px;
+    flex: 1 100%;
+    padding-top:95px;
     line-height:30%;
 }
 .contents{
-    padding-right:20px;
+    flex: 1 100%;
+    padding-top:25px;
+    padding-right:10px;
     padding-left:0px;
     font-size:1.0em;
     color:#909090;
@@ -69,7 +80,20 @@ body {
     float:left;
 }
 
-
+@media all and (max-width: 1200px) {
+  .column.left{
+    width:30%;
+  }
+  .column.middle {
+    width:35%;
+  }
+  .column.right{
+    width:60%;
+  }
+  .photo{
+    visibility:hidden;
+  }
+}
 
 #content {
   margin-left: auto;
