@@ -28,18 +28,14 @@ function addRandomGreeting() {
 }
 
 function jump_to_github(){
-    //window.location.href='https://github.com/luckylucy060';
-    window.open('https://github.com/luckylucy060');
-    window.history.back(-1);
+    window.location.href='https://github.com/luckylucy060';
 }
 function jump_to_resume(){
-    window.open('JiayuLu.pdf');
-    window.history.back(-1);
+    window.location.href='JiayuLu.pdf';
 }
 
 function jump_to_comment(){
-    window.open("/comment.html");
-    window.history.back(-1);
+    window.location.href='/comment.html';
 }
 function loadAllComments() {
   fetch('/data').then(response => response.json()).then((comments) => {
@@ -54,8 +50,8 @@ function loadAllComments() {
     
 }
 
-function createListElement(text) {
+function createListElement(comment) {
   const liElement = document.createElement('li');
-  liElement.innerText = text;
+  liElement.innerText = comment.timestamp+" "+comment.name+":  "+comment.content;
   return liElement;
 }

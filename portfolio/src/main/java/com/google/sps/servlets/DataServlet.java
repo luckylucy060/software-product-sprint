@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.sps.data.userComment;
 
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -27,6 +28,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /*
 @WebServlet("/comment")
 public final class RandomQuoteServlet extends HttpServlet {
@@ -65,30 +68,34 @@ public final class RandomQuoteServlet extends HttpServlet {
 //Servlet that returns some example content. TODO: modify this file to handle comments data 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private List<String> comments;
+  private List<userComment> comments;
 
   @Override
   public void init() {
-    comments = new ArrayList<>();
-    //comments.add("They told me computers could");
+    ;
   }
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    
-    Query query = new Query("Comment");
+    comments = new ArrayList<>();
+
+    Query query = new Query("userComment");
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
       //long id = entity.getKey().getId();
-      String text = (String) entity.getProperty("content");
-      comments.add(text);
-    }
-    
-    String json = convertToJsonUsingGson(comments);
-
+      boolean ispublic = (boolean) entity.getProperty("public");
+        String text = (String) entity.getProperty("content");
+        String uname = (String) entity.getProperty("name");
+        String timestamp=(String) entity.getProperty("time");
+        userComment c = new userComment(timestamp, uname, text);
+        comments.add(c);
+    }   
+    //String json = convertToJsonUsingGson(comments);
+    Gson gson = new Gson();
+    String json = gson.toJson(comments);
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
@@ -101,38 +108,33 @@ public class DataServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
+    // Get the input from the form. 
+ 
     String text = getParameter(request, "text-input", "");
+    String name = getParameter(request, "username", "");
+    String email = getParameter(request, "useremail", "");
+    boolean ispublic = Boolean.parseBoolean(getParameter(request, "public", "false"));
+    boolean anonymous = Boolean.parseBoolean(getParameter(request, "anonymous", "false"));
+    if(anonymous){
+        name="Someone";
+        email="";
+    }
     //comments.add(text);
-    Entity commentEntity = new Entity("Comment");
+    Entity commentEntity = new Entity("userComment");
     commentEntity.setProperty("content", text);
+    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("public", ispublic);
+
+    Date day=new Date();    
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    commentEntity.setProperty("time", df.format(day));
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     response.sendRedirect("/comment.html");
 
-    /*
-    boolean upperCase = Boolean.parseBoolean(getParameter(request, "upper-case", "false"));
-    boolean sort = Boolean.parseBoolean(getParameter(request, "sort", "false"));
-
-    // Convert the text to upper case.
-    if (upperCase) {
-      text = text.toUpperCase();
-    }
-
-    // Break the text into individual words.
-    String[] words = text.split("\\s*,\\s*");
-
-    // Sort the words.
-    if (sort) {
-      Arrays.sort(words);
-    }
-
-    // Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println(Arrays.toString(words));
-    */
   }
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
