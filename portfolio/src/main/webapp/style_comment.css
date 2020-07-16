@@ -1,0 +1,69 @@
+body{
+    padding:0;
+    outline-color:#669999;
+    outline-width:10px;
+    outline-style:inset;
+}
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    padding-left:80px;
+    padding-right:80px;
+    background-color:white;
+}
+.title{
+    flex:1 100%;
+    text-align:center;
+    font-size:2.4em;
+    padding-bottom:20px;
+    color:#669999;
+}
+.inputtext{
+    flex:1 50%;
+}
+.commentplace{
+    flex:1 100%;
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.checkbox{
+    flex:1 30%;
+}
+input[type="text"],textarea{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+@media all and (max-width: 700px) {
+    .wrapper{
+        padding-left:20px;
+        padding-right:20px;
+    }
+    .inputtext{
+        flex:1 100%;
+    }
+    .checkbox{
+        flex:1 100%;
+    }
+}
+input[type=submit] {
+    background-color:#669999;
+    color: white;
+    padding: 12px 20px;
+    cursor: pointer;
+    width:200px;
+    height:40px;
+    padding-bottom:20px;
+    font-size:1.2em;
+    text-align: center;
+}
+input[type=submit]:hover {
+    background-color: #476868;
+}
+#comment-container{
+    background-color: #476868;
+    color:white;
+    width:100%;
+    border-bottom-width:15px;
+    border-bottom-style:solid;
+    border-bottom-color:white;
+}

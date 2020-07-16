@@ -2,17 +2,54 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Jiayu's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+ 
+    <div class="columns">
+    <div class="column left">
+        <div class="contact">
+            <b>CONTACTS</b><br>
+            <br>
+            TEL:<br>
+            +86 13861331640<br>
+            <br>
+            EMAIL:<br>
+            xmt0827@163.com<br>
+        </div>
     </div>
+
+    <div class="photo">
+        <img src="myphoto.jpg" width="400" height="480">
+    </div>
+
+    <div class="column middle">
+        <p style="color:white">placeholder</p>
+    </div>
+
+    <div class="column right">
+        <div class="wrapper">
+        <div class="name">
+            <h1 style="font-size:4.0em">JIAYU LU</h1>
+            <p style="font-size:2.0rem;color:DarkSlateGray">CS@Nanjing University</p>
+        </div>
+        <div class="contents">
+            <p >Nice to meet you!</p>
+            <p >Welcome to my portfolio. To learn more about me in gerneral, please click on "Resume". To have a look at my previous projects, please click on "Github". </p>
+            <p >If you have any questions, feel free to contact with me by TEL or EMAIL listed in the left. </p>
+            <br>
+        </div>
+
+        <button class="button" onclick="jump_to_resume()">Resume</button>
+        <button class="button" onclick="jump_to_github()">Github</button>
+        <button class="button" onclick="jump_to_comment()">Comment</button>
+        </div>
+    </div>
+
+    </div>
+
   </body>
 </html>

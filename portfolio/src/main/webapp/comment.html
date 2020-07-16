@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments of Portfolio</title>
+    <link rel="stylesheet" href="style_comment.css"> 
+    <script src="script.js"></script>
+  </head>
+  <body onload="loadAllComments()">
+        <form action="/data" method="POST">
+            <div class="wrapper">
+                <div class="title"><h >COMMENTS</h></div>
+                <br/>
+                <div class="inputtext"><input type="text" name="username" placeholder="Your Name" style="width:100%;height:30px"></div>
+                <div class="inputtext"><input type="text" name="useremail" placeholder="Your Email" style="width:100%;height:30px"></div>
+                <br/>
+                <div class="commentplace"><textarea name="text-input" style="width:100%;height:130px;font-family:Arial">Your comment...</textarea>
+                <br/>
+                <div class="checkbox"><input type="checkbox" name="public" value="true" > Share this comment with the public</div>
+                <div class="checkbox"><input type="checkbox" name="anonymous" value="true" > Comment anonymously (your name and email will not be saved) </div>                
+            </div> 
+            <div class="submit"><input type="submit" value="Submit" ></div>           
+        </form>
+        <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=3)" width="100%"color=#669999 SIZE=3>
+        <div id="comment-container"></div>        
+  </body>
+</html>

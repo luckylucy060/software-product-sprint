@@ -26,3 +26,32 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function jump_to_github(){
+    window.location.href='https://github.com/luckylucy060';
+}
+function jump_to_resume(){
+    window.location.href='JiayuLu.pdf';
+}
+
+function jump_to_comment(){
+    window.location.href='/comment.html';
+}
+function loadAllComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+
+    const ListElement = document.getElementById('comment-container');
+    ListElement.innerHTML = '';
+    for (i=0; i<comments.length; i++) {       
+        ListElement.appendChild(
+        createListElement(comments[i]));
+    }
+  });
+    
+}
+
+function createListElement(comment) {
+  const liElement = document.createElement('li');
+  liElement.innerText = comment.timestamp+" "+comment.name+":  "+comment.content;
+  return liElement;
+}
