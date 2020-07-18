@@ -18,6 +18,9 @@ body{
     padding-bottom:20px;
     color:#669999;
 }
+.logindex{
+    flex:1 100%;
+}
 .inputtext{
     flex:1 50%;
 }
