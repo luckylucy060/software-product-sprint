@@ -37,8 +37,11 @@ function jump_to_resume(){
 function jump_to_comment(){
     window.location.href='/comment.html';
 }
+
+var hasLogIn = true;
 function loadAllComments() {
-  fetch('/data').then(response => response.json()).then((comments) => {
+
+   fetch('/data').then(response => response.json()).then((comments) => {
 
     const ListElement = document.getElementById('comment-container');
     ListElement.innerHTML = '';
@@ -46,7 +49,29 @@ function loadAllComments() {
         ListElement.appendChild(
         createListElement(comments[i]));
     }
-  });
+   });
+
+   fetch('/log').then(response => response.json()).then((info) => {
+      if (info.email === "n"){
+        //not login
+        var x=document.getElementById('log');
+        x.innerHTML="Please login <a href=\"" + info.logUrl + "\">here</a> to make comments." 
+        var y=document.getElementById('submit');
+        y.style.opacity=0.6;
+        y.style.cursor="not-allowed";
+        
+      }
+      else {
+        //login
+        document.getElementsByName("username")[0].value = info.email;
+        document.getElementsByName("useremail")[0].value = info.email;
+        var x=document.getElementById('log');
+        x.innerHTML="Login Successfully! You can edit your name and email by yourself. Logout <a href=\"" + info.logUrl + "\">here</a>.";
+        var y=document.getElementById('submit');
+        y.style.opacity=1.0;
+        y.style.cursor="pointer";
+      }
+   }); 
     
 }
 
