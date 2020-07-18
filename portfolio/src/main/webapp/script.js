@@ -59,7 +59,7 @@ function loadAllComments() {
         var y=document.getElementById('submit');
         y.style.opacity=0.6;
         y.style.cursor="not-allowed";
-        
+        y.disabled=true;
       }
       else {
         //login
